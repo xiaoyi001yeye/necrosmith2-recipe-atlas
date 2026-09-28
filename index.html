@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f4f6f1">
+  <meta name="description" content="NecroSmith 2 秘方图鉴，本地离线配方检索工具。">
+  <title>秘方图鉴 · NecroSmith 2</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="config.js" defer></script>
+  <script src="recipes.data.js" defer></script>
+  <script src="parts.zh-CN.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="rail" aria-label="主导航">
+      <a class="brand-mark" href="#top" aria-label="NecroSmith 2 首页"><span>Ｎ</span></a>
+      <div class="rail-rule"></div>
+      <a class="rail-item is-active" href="#recipes" aria-label="秘方图鉴" title="秘方图鉴"><span class="icon-book" aria-hidden="true">▤</span></a>
+      <div class="rail-bottom"><span class="offline-dot"></span><span>本地</span></div>
+    </aside>
+
+    <main id="top" class="main-area">
+      <header class="topbar">
+        <div class="breadcrumbs"><span>NecroSmith 2</span><span class="crumb-sep">/</span><strong>秘方图鉴</strong></div>
+        <div class="topbar-meta"><span class="data-indicator"><i></i>本地档案</span><span class="topbar-divider"></span><span class="version">中文资料库</span></div>
+      </header>
+
+      <section class="intro" aria-labelledby="page-title">
+        <div class="intro-copy">
+          <div class="eyebrow"><span class="eyebrow-line"></span><span data-label="eyebrow"></span></div>
+          <h1 id="page-title" data-label="title"></h1>
+          <p data-label="subtitle"></p>
+        </div>
+        <div class="intro-stamp" aria-hidden="true"><div class="stamp-orbit"></div><span>ＮＳ<br><small>II</small></span><i>✳</i></div>
+      </section>
+
+      <section class="stats" aria-label="配方统计">
+        <div class="stat-item"><span class="stat-label" data-label="allRecipes"></span><strong id="stat-total">—</strong><span class="stat-caption">RECIPES</span></div>
+        <div class="stat-item"><span class="stat-label" data-label="categories"></span><strong id="stat-groups">—</strong><span class="stat-caption">CATEGORIES</span></div>
+        <div class="stat-item"><span class="stat-label" data-label="craftableCount"></span><strong id="stat-craftable">—</strong><span class="stat-caption">AVAILABLE</span></div>
+        <div class="stats-note"><span class="note-glyph">⌘</span><div><span data-label="sourceLabel"></span><strong data-label="sourceValue"></strong></div></div>
+      </section>
+
+      <section class="workspace" id="recipes" aria-label="配方列表">
+        <div class="section-heading">
+          <div><div class="section-kicker">COLLECTION <span>／ 01</span></div><h2>全部配方</h2></div>
+          <div class="result-summary"><strong id="result-count">397</strong><span data-label="total"></span></div>
+        </div>
+
+        <div class="toolbar">
+          <label class="search-box">
+            <svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="8.7" cy="8.7" r="5.8"></circle><path d="m13.1 13.1 4 4"></path></svg>
+            <input id="search" type="search" autocomplete="off" data-placeholder="search" aria-label="搜索配方、部件或分类">
+            <kbd>⌘ K</kbd>
+          </label>
+          <div class="filter-controls">
+            <label class="select-wrap"><span class="sr-only">造物分类</span><select id="category-filter" aria-label="按造物分类筛选"><option value="" data-label="category"></option></select><span class="select-chevron">⌄</span></label>
+          </div>
+        </div>
+
+        <div class="table-frame">
+          <div class="table-scroll" tabindex="0" aria-label="可横向滚动的配方表格">
+            <table>
+              <thead><tr>
+                <th class="col-number" data-label="number"></th><th class="col-group" data-label="group"></th><th class="col-recipe" data-label="recipe"></th><th class="col-status" data-label="status"></th><th class="col-part" data-label="head"></th><th class="col-part" data-label="body"></th><th class="col-part" data-label="leftArm"></th><th class="col-part" data-label="rightArm"></th><th class="col-part" data-label="leftLeg"></th><th class="col-part" data-label="rightLeg"></th>
+              </tr></thead>
+              <tbody id="recipe-rows"></tbody>
+            </table>
+            <div id="empty-state" class="empty-state" hidden><div class="empty-symbol">⌕</div><h3 data-label="emptyTitle"></h3><p data-label="emptyBody"></p><button id="clear-filters" class="text-button" data-label="clearFilters"></button></div>
+          </div>
+        </div>
+
+        <footer class="table-footer">
+          <div class="page-size-control"><span data-label="pageSize"></span><label class="select-wrap compact"><select id="page-size" aria-label="每页显示条数"><option selected>12</option><option>24</option><option>48</option><option>96</option></select><span class="select-chevron">⌄</span></label><span data-label="rows"></span></div>
+          <div class="pagination" aria-label="分页"><button id="first-page" class="page-arrow" aria-label="首页">«</button><button id="prev-page" class="page-arrow" aria-label="上一页">‹</button><div id="page-buttons" class="page-buttons"></div><button id="next-page" class="page-arrow" aria-label="下一页">›</button><button id="last-page" class="page-arrow" aria-label="末页">»</button></div>
+          <div id="page-caption" class="page-caption"></div>
+        </footer>
+      </section>
+      <footer class="app-footer"><span>NECROSMITH II <span class="footer-sep">·</span> RECIPE ARCHIVE</span><span>静态本地页面 <span class="footer-sep">·</span> 无需联网</span></footer>
+    </main>
+  </div>
+
+  <div id="drawer-backdrop" class="drawer-backdrop" hidden></div>
+  <aside id="detail-drawer" class="detail-drawer" aria-labelledby="detail-title" aria-modal="true" role="dialog" aria-hidden="true">
+    <div class="drawer-top"><span class="drawer-kicker">RECIPE FILE <i>／</i> <b id="drawer-number">001</b></span><button id="close-drawer" class="close-button" aria-label="关闭详情">×</button></div>
+    <div class="drawer-content"><div class="drawer-category" id="drawer-category"></div><h2 id="detail-title"></h2><p id="drawer-english" class="drawer-english"></p><div id="drawer-status" class="drawer-status"></div><div class="drawer-rule"></div><div class="parts-heading"><span data-label="parts"></span><span>06 PARTS</span></div><div id="drawer-parts" class="drawer-parts"></div><button id="copy-name" class="copy-button"><span data-label="copyName"></span><span aria-hidden="true">↗</span></button></div>
+  </aside>
+</body>
+</html>
