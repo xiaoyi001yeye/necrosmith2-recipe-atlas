@@ -10,10 +10,6 @@
 
 直接用浏览器打开 `index.html`。无需安装依赖或启动服务。
 
-## 自动部署
-
-推送到 `main` 分支后，GitHub Actions 会自动把页面发布到 GitHub Pages。首次启用时，在仓库的 **Settings → Pages → Build and deployment → Source** 中选择 **GitHub Actions**。
-
 ## 功能
 
 - 搜索配方、部件名称和造物分类
