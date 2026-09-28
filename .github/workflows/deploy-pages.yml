@@ -31,6 +31,7 @@ jobs:
         run: |
           mkdir -p _site
           cp index.html styles.css app.js config.js parts.zh-CN.js recipes.data.js _site/
+          cp -R assets _site/
           touch _site/.nojekyll
 
       - name: Upload Pages artifact
